@@ -57,7 +57,7 @@ public class FunctionTest {
 
 		// Create an instance of a Selenium explicit wait so that we can dynamically
 		// wait for an element
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 
 		// wait for the expand operation button to be visible and store that element
 		// into a variable
