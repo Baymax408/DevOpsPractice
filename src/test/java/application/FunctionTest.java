@@ -18,7 +18,7 @@ public class FunctionTest {
 	private WebDriver driver;
 
 	@Test
-	public void shouldOpenSafari() throws MalformedURLException {
+	public void testImageRecognize() throws MalformedURLException {
 		/**
 		 * In this section, we will configure our SauceLabs credentials in order to run
 		 * our tests on saucelabs.com
@@ -48,49 +48,51 @@ public class FunctionTest {
 		capabilities.setCapability("version", "11.1");
 
 		// set your test case name so that it shows up in Sauce Labs
-		capabilities.setCapability("name", "shouldOpenSafari()");
+		capabilities.setCapability("name", "testImageRecognize()");
 
 		driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
-		// navigate to the url of the Sauce Labs Sample app
-		driver.navigate().to("https://www.saucedemo.com");
+		// navigate to the url of the Example restful api
+		driver.navigate().to("http://169.51.194.16:31936/swagger-ui.html");
 
 		// Create an instance of a Selenium explicit wait so that we can dynamically
 		// wait for an element
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
-		// wait for the user name field to be visible and store that element into a
-		// variable
-		By userNameFieldLocator = By.cssSelector("[type='text']");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(userNameFieldLocator));
+		// wait for the expand operation button to be visible and store that element
+		// into a variable
+		By expandOperationButtonLocator = By.cssSelector("expand-operation");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(expandOperationButtonLocator));
 
-		// type the user name string into the user name field
-		driver.findElement(userNameFieldLocator).sendKeys("standard_user");
+		// click expand operation button
+		driver.findElement(expandOperationButtonLocator).click();
 
-		// type the password into the password field
-		driver.findElement(By.cssSelector("[type='password']")).sendKeys("secret_sauce");
+		// click try it out button
+		driver.findElement(By.cssSelector("try-out__btn")).click();
 
-		// hit Login button
-		driver.findElement(By.cssSelector("[type='submit']")).click();
+		// hit Choose File button
+		driver.findElement(By.cssSelector("[type='file']"))
+				.sendKeys(System.getProperty("user.dir") + "/images/生日蛋糕.jpeg");
 
-		// Synchronize on the next page and make sure it loads
-		By inventoryPageLocator = By.id("inventory_container");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(inventoryPageLocator));
+		// click execute button
+		driver.findElement(By.cssSelector("execute")).click();
 
-		// Assert that the inventory page displayed appropriately
-		Boolean result = driver.findElements(inventoryPageLocator).size() > 0;
-		assertTrue(result);
+		// Synchronize on the server response and make sure it loads
+		By responseCodeLocator = By.cssSelector("response-col_status");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(responseCodeLocator));
+
+		// Assert that the response code is 200
+		String responseCode = driver.findElement(responseCodeLocator).getText();
+		assertTrue("200".equalsIgnoreCase(responseCode));
 
 		/**
 		 * Here we tear down the driver session and send the results to Sauce Labs
 		 */
-		if (result) {
+		if ("200".equalsIgnoreCase(responseCode)) {
 			((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
 		} else {
 			((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
 		}
 		driver.quit();
-
 	}
-
 }
