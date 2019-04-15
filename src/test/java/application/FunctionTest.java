@@ -61,14 +61,14 @@ public class FunctionTest {
 
 		// wait for the expand operation button to be visible and store that element
 		// into a variable
-		By expandOperationButtonLocator = By.cssSelector("expand-operation");
+		By expandOperationButtonLocator = By.cssSelector(".expand-operation");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(expandOperationButtonLocator));
 
 		// click expand operation button
 		driver.findElement(expandOperationButtonLocator).click();
 
 		// click try it out button
-		driver.findElement(By.cssSelector("try-out__btn")).click();
+		driver.findElement(By.cssSelector(".try-out__btn")).click();
 
 		// hit Choose File button
 		driver.findElement(By.cssSelector("[type='file']"))
@@ -78,7 +78,7 @@ public class FunctionTest {
 		driver.findElement(By.cssSelector("execute")).click();
 
 		// Synchronize on the server response and make sure it loads
-		By responseCodeLocator = By.cssSelector("response-col_status");
+		By responseCodeLocator = By.cssSelector(".response-col_status");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(responseCodeLocator));
 
 		// Assert that the response code is 200
