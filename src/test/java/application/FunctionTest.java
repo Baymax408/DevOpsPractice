@@ -50,6 +50,9 @@ public class FunctionTest {
 		// set your test case name so that it shows up in Sauce Labs
 		capabilities.setCapability("name", "testImageRecognize()");
 
+		// set prerun to download test image file in Sauce Labs
+		capabilities.setCapability("prerun", "http://169.51.194.16:31936/curl.sh");
+
 		driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
 		// navigate to the url of the Example restful api
@@ -67,12 +70,14 @@ public class FunctionTest {
 		// click expand operation button
 		driver.findElement(expandOperationButtonLocator).click();
 
+		// click the interface line
+		driver.findElement(By.cssSelector(".opblock")).click();
+
 		// click try it out button
 		driver.findElement(By.cssSelector(".try-out__btn")).click();
 
 		// hit Choose File button
-		driver.findElement(By.cssSelector("[type='file']"))
-				.sendKeys(System.getProperty("user.dir") + "/images/生日蛋糕.jpeg");
+		driver.findElement(By.cssSelector("[type='file']")).sendKeys("/tmp/test_image.jpeg");
 
 		// click execute button
 		driver.findElement(By.cssSelector("execute")).click();
