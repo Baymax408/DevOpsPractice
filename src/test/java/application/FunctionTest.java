@@ -79,8 +79,14 @@ public class FunctionTest {
 		// hit Choose File button
 		driver.findElement(By.cssSelector("[type='file']")).sendKeys("/tmp/test_image.jpeg");
 
+		// scroll down 300px
+		((JavascriptExecutor) driver).executeScript("scroll(0, 300);");
+
 		// click execute button
 		driver.findElement(By.cssSelector("execute")).click();
+
+		// scroll down 600px
+		((JavascriptExecutor) driver).executeScript("scroll(0, 600);");
 
 		// Synchronize on the server response and make sure it loads
 		By responseCodeLocator = By.cssSelector(".response-col_status");
