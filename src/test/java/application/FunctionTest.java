@@ -83,7 +83,7 @@ public class FunctionTest {
 		((JavascriptExecutor) driver).executeScript("scroll(0, 300);");
 
 		// click execute button
-		driver.findElement(By.cssSelector("execute")).click();
+		driver.findElement(By.cssSelector(".execute")).click();
 
 		// scroll down 600px
 		((JavascriptExecutor) driver).executeScript("scroll(0, 600);");
