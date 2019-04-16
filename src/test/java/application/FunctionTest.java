@@ -79,8 +79,8 @@ public class FunctionTest {
 		// hit Choose File button
 		driver.findElement(By.cssSelector("[type='file']")).sendKeys("/tmp/test_image.jpeg");
 
-		// scroll down 300px
-		((JavascriptExecutor) driver).executeScript("scroll(0, 300);");
+		// scroll down 500px
+		((JavascriptExecutor) driver).executeScript("scroll(0, 500);");
 
 		// click execute button
 		driver.findElement(By.cssSelector(".execute")).click();
@@ -92,8 +92,8 @@ public class FunctionTest {
 		By responseCodeLocator = By.cssSelector(".response-col_status");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(responseCodeLocator));
 
-		// scroll down 600px
-		((JavascriptExecutor) driver).executeScript("scroll(0, 600);");
+		// scroll down 2000px
+		((JavascriptExecutor) driver).executeScript("scroll(0, 2000);");
 
 		// Assert that the response code is 200
 		String responseCode = driver.findElement(responseCodeLocator).getText();
