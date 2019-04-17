@@ -77,7 +77,7 @@ public class FunctionTest {
 		driver.findElement(By.cssSelector(".try-out__btn")).click();
 
 		// hit Choose File button
-		driver.findElement(By.cssSelector("[type='file']")).sendKeys("/tmp/test_image.jpeg");
+		driver.findElement(By.cssSelector("[type='file']")).sendKeys("/tmp/cake.jpeg");
 
 		// scroll down 500px
 		((JavascriptExecutor) driver).executeScript("scroll(0, 500);");
