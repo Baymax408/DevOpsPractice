@@ -89,14 +89,14 @@ public class FunctionTest {
 		((JavascriptExecutor) driver).executeScript("scroll(0, 1000);");
 
 		// Synchronize on the server response and make sure it loads
-		By responseCodeLocator = By.cssSelector(".response-col_status");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(responseCodeLocator));
+		By downloadLocator = By.cssSelector(".download-contents");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(downloadLocator));
 
 		// scroll down 2000px
 		((JavascriptExecutor) driver).executeScript("scroll(0, 2000);");
 
 		// Assert that the response code is 200
-		String responseCode = driver.findElement(responseCodeLocator).getText();
+		String responseCode = driver.findElement(By.cssSelector(".col.response-col_status:first-of-type")).getText();
 		assertTrue("200".equalsIgnoreCase(responseCode));
 
 		/**
