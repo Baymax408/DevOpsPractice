@@ -96,7 +96,8 @@ public class FunctionTest {
 		((JavascriptExecutor) driver).executeScript("scroll(0, 2000);");
 
 		// Assert that the response code is 200
-		String responseCode = driver.findElement(By.cssSelector(".col.response-col_status:first-of-type")).getText();
+		String responseCode = driver.findElement(By.cssSelector(".response .response-col_status:first-of-type"))
+				.getText();
 		assertTrue("200".equalsIgnoreCase(responseCode));
 
 		/**
